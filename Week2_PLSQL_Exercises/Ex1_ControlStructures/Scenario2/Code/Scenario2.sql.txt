@@ -1,0 +1,27 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+  CURSOR ApplyAnnualFee IS
+    SELECT AccountID, Balance FROM Accounts;
+
+  rec_acc ApplyAnnualFee%ROWTYPE;
+  v_annual_fee NUMBER := 50;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('--- Applying Annual Fees to Accounts ---');
+
+  OPEN ApplyAnnualFee;
+  LOOP
+    FETCH ApplyAnnualFee INTO rec_acc;
+    EXIT WHEN ApplyAnnualFee%NOTFOUND;
+
+    UPDATE Accounts
+    SET Balance = Balance - v_annual_fee
+    WHERE AccountID = rec_acc.AccountID;
+
+    DBMS_OUTPUT.PUT_LINE('Account ' || rec_acc.AccountID || ': Annual fee of $' || v_annual_fee || ' applied. Old Balance: $' || rec_acc.Balance);
+  END LOOP;
+  CLOSE ApplyAnnualFee;
+
+  COMMIT;
+END;
+/
