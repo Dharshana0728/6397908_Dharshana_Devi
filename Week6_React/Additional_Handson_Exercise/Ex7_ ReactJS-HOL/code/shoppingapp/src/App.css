@@ -1,0 +1,32 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: #228B22; /* Green color */
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.items-table {
+  border-collapse: collapse;
+  min-width: 300px;
+  font-size: 1.1em;
+  box-shadow: 0 0 10px #ddd;
+}
+
+.items-table th,
+.items-table td {
+  border: 1px solid #888;
+  padding: 8px 16px;
+  text-align: left;
+}
+
+.items-table th {
+  background-color: #f0fff0;
+  color: #228B22;
+}
